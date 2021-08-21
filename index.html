@@ -1,16 +1,81 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <h1>pictext</h1>
-    <hr>
-    <input type="file" id="file-input">
-    <button id="generate">Generate</button>
-    <hr>
-    <h2>Output</h2>
-    <hr>
-    <p id="output"></p>
+    <main id="page">
+      <br>
+      <div class="logo-container">
+        <h1 id="logo">pictext</h1>
+      </div>
+      <br>
+      <div class="step-container">
+        <h2>Step 1:</h2>
+        <p class="instructions">Upload your image</p>
+      </div>
+      <div id="input-container">
+        <input type="file" id="file-input">
+      </div>
+      <br>
+      <div class="step-container">
+        <h2>Step 2:</h2>
+        <p class="instructions">Set the text sizing</p>
+      </div>
+      <div id="font-size-container">
+        <div class="row">
+          <label>Font Size</label>
+          <input type="number" id="font-size" value="12">
+        </div>
+        <div class="row">
+          <label>Line Height</label>
+          <input type="number" id="line-height" value="1.5">
+        </div>
+        <div class="row">
+          <label>Characters per Line</label>
+          <input type="number" id="char-per-line" value="100">
+        </div>
+      </div>
+      <br>
+      <div class="step-container">
+        <h2>Step 3:</h2>
+        <p class="instructions">Choose the characters to use</p>
+      </div>
+      <div id="char-container">
+        <table class="table" id="input-table">
+          <thead>
+            <tr>
+              <th scope="col">Character</th>
+              <th scope="col">Max Weight (0-255)</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody id="input-table-body">
+            <tr>
+              <td><input type="text" class="char-input"></td>
+              <td><input type="number" class="weight-input" value="127"></td>
+              <td><canvas class="pixel-canvas"></canvas></td>
+            </tr>
+            <tr>
+              <td><input type="text" class="char-input" value="0"></td>
+              <td><input type="number" class="weight-input" value="255"></td>
+              <td><canvas class="pixel-canvas"></canvas></td>
+            </tr>
+          </tbody>          
+        </table>
+        <button id="add-char">Add Character</button>
+        <button id="reset-char">Reset Characters</button>
+      </div>
+      <br>
+      <div class="step-container">
+        <h2>Generate ASCII Art:</h2>
+      </div>
+      <div id="input-container">
+        <button id="generate">Generate</button>
+      </div>
+      <br>
+    </main>
   </body>
   <script src="script.js"></script>
 </html>

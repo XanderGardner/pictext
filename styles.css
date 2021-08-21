@@ -1,0 +1,121 @@
+
+/* START: general overwriting  */
+h1, h2, h3, h4, h5, h6, p, i {
+  margin: 0;
+}
+
+/* START: page formating */
+body {
+  width: 100vw;
+  background-color: black;
+}
+
+main {
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 5px;
+  
+  width: 80vw;
+  margin: 10px auto 0 auto;
+
+  background-color: white;
+}
+
+/* START: titles and headers */
+#logo {
+  
+}
+.logo-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.step-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  margin-left: 10px;
+}
+
+.instructions {
+  font-size: 1.5rem;
+  margin-left: 10px;
+  margin-top: auto;
+}
+
+
+/* START: Step 1: Input */
+
+#input-container {
+  border-style: solid;
+  border-width: 0 0 0 2px;
+  border-radius: 5px;
+  
+  padding: 20px;
+  margin: 10px 0 10px 10rem;
+}
+
+/* START: Step 2: Text sizing */
+
+#font-size-container {
+  border-style: solid;
+  border-width: 0 0 0 2px;
+  border-radius: 5px;
+  
+  padding: 5px 0px 5px 20px;
+  margin: 10px 0 10px 10rem;
+}
+.row {
+  display: flex;
+  flex-direction: row;
+  margin-top: 5px;
+  width: 17vw;
+}
+
+label {
+  margin: 8px;
+}
+
+#font-size, #char-per-line, #line-height {
+  margin: 5px 5px 5px auto;
+  width: 50px;
+}
+
+/* START: Step 3: Characters to use */
+
+#char-container {
+  border-style: solid;
+  border-width: 0 0 0 2px;
+  border-radius: 5px;
+  
+  padding: 5px 0px 5px 20px;
+  margin: 10px 0 10px 10rem;
+}
+
+#input-table {
+  width: 30vw;
+}
+
+.pixel-canvas {
+  width: 25px;
+  height: 25px;
+  background-color: rgb(0, 0, 0);
+}
+
+.char-input {
+  width: 25px;
+}
+
+.weight-input {
+  width: 60px;
+  margin: auto;
+}
+
+.pixel-canvas {
+  margin-right: auto;
+}
+
+td {
+  margin: auto;
+}
