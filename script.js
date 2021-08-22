@@ -1,6 +1,12 @@
 var ctx;
 var width;
 var height;
+var font_size;
+var line_height;
+var char_per_line;
+var max_weights = [];
+var char_weights_dict = {};
+var monospace_ratio = 1.716;
 
 // step 1
 const file_input_element = document.getElementById('file-input');
@@ -29,9 +35,11 @@ reset_char_button.addEventListener('click', (e) => {
 // generation process
 const generate_button = document.getElementById('generate');
 generate_button.addEventListener('click', (e) => {
-  validateGeneration();
+  readInput();
+  if (validGenerationInput()) {
+    generate_pictext();
+  }
 });
-
 
 // helpers
 
@@ -40,10 +48,13 @@ function setInput(file) {
   fr.onload = function () {
     var img = new Image
     img.onload = function () {
-      ctx = document.createElement("canvas").getContext("2d");
-      ctx.drawImage(img, 0, 0);
+      let canvas = document.createElement("canvas");
+      ctx = canvas.getContext("2d");
+      canvas.width = img.width;
+      canvas.height = img.height;
       width = img.width;
       height = img.height;
+      ctx.drawImage(img, 0, 0);
       updateDisplay();
     };
     img.src = fr.result;
@@ -52,7 +63,83 @@ function setInput(file) {
 }
 
 function updateDisplay() {
+}
 
+function readInput() {
+  font_size = parseFloat(font_size_element.value);
+  line_height = parseFloat(line_height_element.value);
+  char_per_line = parseFloat(char_per_line_element.value);
+  var char_elements = document.getElementsByClassName('char-input');
+  var weight_elements = document.getElementsByClassName('weight-input');
+  for (var i = 0; i < weight_elements.length; i++) {
+    max_weights[i] = parseFloat(weight_elements[i].value);
+    var curr_char = char_elements[i].value
+    if (curr_char == null || curr_char == "") {
+      curr_char = " ";
+    } else if (curr_char.length > 1) {
+      curr_char = curr_char[0];
+    }
+    char_weights_dict[max_weights[i]] = curr_char;
+  }
+  max_weights.sort(function(a, b){return a-b});
+}
+
+function validGenerationInput() {
+  if (ctx == null) {
+    alert("No file has been chosen")
+    return false;
+  }
+  if (font_size == null || isNaN(font_size)) {
+    alert("Font size must be set");
+    return false;
+  }
+  if (line_height == null || isNaN(line_height)) {
+    alert("Line height must be set");
+    return false;
+  }
+  if (char_per_line == null || isNaN(char_per_line)) {
+    alert("Characters per line must be set");
+    return false;
+  }
+  for (var i = 0; i < max_weights.length; i++) {
+    if (isNaN(max_weights[i])) {
+      alert("Max weight must be set for all pixels");
+      return false;
+    }
+  }
+  return true;
+}
+
+function generate_pictext() {
+  const page_element = document.getElementById('page');
+  page_element.innerHTML = `<p id=\"output\" style=\"white-space: pre; font-family: monospace; font-size: ${font_size}pt; line-height: ${line_height};\"></p>`;
+  const output_element = document.getElementById('output');
+  var pictext = "";
+
+  var nth_col = width / char_per_line;
+  var nth_row = nth_col * monospace_ratio * line_height;
+  for (var row = 0.0; row < height; row += nth_row) {
+    var pictext_line = ""
+    for (var col = 0.0; col < width; col += nth_col) {
+      var rounded_row = Math.floor(row);
+      var rounded_col = Math.floor(col);
+      pictext_line += getChar(rounded_row, rounded_col);
+    }
+    console.log("end of line: " + pictext_line);
+    pictext += pictext_line + "\n"
+  }
+  output_element.innerText = pictext;
+}
+function getChar(row, col) {
+  var pixel_weight = getWeight(row, col);
+  // max_weights holds ascending array of keys (with max weights)
+  // keys access the character in char_weights_dict
+  for (var i = 0; i < max_weights.length; i += 1) {
+    if (pixel_weight <= max_weights[i]) {
+      return char_weights_dict[max_weights[i]];
+    }
+  }
+  return char_weights_dict[max_weights[max_weights.length - 1]]
 }
 
 function getRed(row, col) {
@@ -69,16 +156,4 @@ function getAlpha(row, col) {
 }
 function getWeight(row, col) {
   return (getRed(row,col) + getGreen(row,col) + getBlue(row,col)) / 3;
-}
-
-function validateGeneration() {
-  console.log("Img: " + ctx);
-  console.log("Width: " + width);
-  console.log("Height" + height);
-
-  console.log("Font size: " + font_size_element.value);
-  console.log("line height: " + line_height_element.value);
-  console.log("Chars per line: " + char_per_line_element.value);
-
-  // Todo: validate and create data structure for step 3 characters max weights
 }

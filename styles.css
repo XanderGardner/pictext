@@ -1,7 +1,8 @@
 
 /* START: general overwriting  */
-h1, h2, h3, h4, h5, h6, p, i {
+h1, h2, h3, h4, h5, h6, p, i, button, input {
   margin: 0;
+  font-family: 'Urbanist', sans-serif;
 }
 
 /* START: page formating */
@@ -11,31 +12,32 @@ body {
 }
 
 main {
-  border-style: solid;
-  border-width: 2px;
   border-radius: 5px;
   
-  width: 80vw;
-  margin: 10px auto 0 auto;
+  width: 60vw;
+  margin: 5vh auto 5vh auto;
+  padding: 10px;
 
   background-color: white;
 }
 
 /* START: titles and headers */
 #logo {
-  
+  font-size: 7rem;
+  font-family: 'Allison', cursive;
 }
 .logo-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  margin-top: -2.5rem;
 }
 
 .step-container {
   display: flex;
   flex-direction: row;
   justify-content: left;
-  margin-left: 10px;
+  margin-left: 5vw;
 }
 
 .instructions {
@@ -53,7 +55,7 @@ main {
   border-radius: 5px;
   
   padding: 20px;
-  margin: 10px 0 10px 10rem;
+  margin: 10px 0 10px 15vw;
 }
 
 /* START: Step 2: Text sizing */
@@ -64,7 +66,7 @@ main {
   border-radius: 5px;
   
   padding: 5px 0px 5px 20px;
-  margin: 10px 0 10px 10rem;
+  margin: 10px 0 10px 15vw;
 }
 .row {
   display: flex;
@@ -90,7 +92,7 @@ label {
   border-radius: 5px;
   
   padding: 5px 0px 5px 20px;
-  margin: 10px 0 10px 10rem;
+  margin: 10px 0 10px 15vw;
 }
 
 #input-table {
