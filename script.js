@@ -30,7 +30,9 @@ file_input_element.addEventListener('change', (e) => {
 
 // step 3
 add_char_button.addEventListener('click', (e) => {
-  table_body_element.innerHTML += "<td><input type=\"text\" class=\"char-input\"></td><td><input type=\"number\" class=\"weight-input\"></td><td><canvas class=\"pixel-canvas\"></canvas></td>";
+  var char_row_element = document.createElement("tr");
+  char_row_element.innerHTML = "<td><input type=\"text\" class=\"char-input\"></td><td><input type=\"number\" class=\"weight-input\"></td><td><canvas class=\"pixel-canvas\"></canvas></td>";
+  table_body_element.appendChild(char_row_element);
 });
 reset_char_button.addEventListener('click', (e) => {
   table_body_element.innerHTML = base_table_html;
