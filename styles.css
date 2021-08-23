@@ -5,6 +5,11 @@ h1, h2, h3, h4, h5, h6, p, i, button, input {
   font-family: 'Urbanist', sans-serif;
 }
 
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 /* START: page formating */
 body {
   width: 100vw;
@@ -22,9 +27,11 @@ main {
 }
 
 /* phones */
-@media (min-width: 0px) and (max-width: 767px) {
+@media (max-width: 767px) {
   main {
-    width: 95vw;
+    width: 100vw;
+    padding: 0;
+    margin: 0;
   }
 }
 
