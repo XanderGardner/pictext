@@ -148,7 +148,10 @@ function getChar(row, col) {
 }
 
 function getWeight(row, col) {
-  return (getRed(row,col) + getGreen(row,col) + getBlue(row,col)) / 3;
+  var r = getRed(row, col);
+  var g = getGreen(row, col);
+  var b = getGreen(row, col);
+  return Math.round(0.299*r + 0.587*g + 0.114*b);
 }
 
 function getRed(row, col) {
