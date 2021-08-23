@@ -21,6 +21,13 @@ main {
   background-color: white;
 }
 
+/* phones */
+@media (min-width: 0px) and (max-width: 767px) {
+  main {
+    width: 95vw;
+  }
+}
+
 /* START: titles and headers */
 #logo {
   font-size: 7rem;
