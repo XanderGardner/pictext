@@ -6,25 +6,29 @@ var line_height;
 var char_per_line;
 var max_weights = [];
 var char_weights_dict = {};
-var monospace_ratio = 1.716;
+var monospace_ratio = 1.716; // experimentally obtained ratio for the monospace font (height/width)
+
+// step 1 elements
+const file_input_element = document.getElementById('file-input');
+// step 2 elements
+const font_size_element = document.getElementById('font-size');
+const line_height_element = document.getElementById('line-height');
+const char_per_line_element = document.getElementById('char-per-line');
+// step 3 elements
+const table_body_element = document.getElementById('input-table-body');
+const add_char_button = document.getElementById('add-char');
+const reset_char_button = document.getElementById('reset-char');
+const base_table_html = table_body_element.innerHTML; // original html; used for reset
+// generation elements
+const generate_button = document.getElementById('generate');
 
 // step 1
-const file_input_element = document.getElementById('file-input');
 file_input_element.addEventListener('change', (e) => {
   const file = e.target.files[0];
   setInput(file);
 });
 
-// step 2
-const font_size_element = document.getElementById('font-size');
-const line_height_element = document.getElementById('line-height');
-const char_per_line_element = document.getElementById('char-per-line');
-
 // step 3
-const table_body_element = document.getElementById('input-table-body');
-const add_char_button = document.getElementById('add-char');
-const reset_char_button = document.getElementById('reset-char');
-const base_table_html = table_body_element.innerHTML;
 add_char_button.addEventListener('click', (e) => {
   table_body_element.innerHTML += "<td><input type=\"text\" class=\"char-input\"></td><td><input type=\"number\" class=\"weight-input\"></td><td><canvas class=\"pixel-canvas\"></canvas></td>";
 });
@@ -33,7 +37,6 @@ reset_char_button.addEventListener('click', (e) => {
 });
 
 // generation process
-const generate_button = document.getElementById('generate');
 generate_button.addEventListener('click', (e) => {
   readInput();
   if (validGenerationInput()) {
@@ -55,14 +58,10 @@ function setInput(file) {
       width = img.width;
       height = img.height;
       ctx.drawImage(img, 0, 0);
-      updateDisplay();
     };
     img.src = fr.result;
   };
   fr.readAsDataURL(file);
-}
-
-function updateDisplay() {
 }
 
 function readInput() {
@@ -130,6 +129,7 @@ function generate_pictext() {
   }
   output_element.innerText = pictext;
 }
+
 function getChar(row, col) {
   var pixel_weight = getWeight(row, col);
   // max_weights holds ascending array of keys (with max weights)
@@ -142,18 +142,22 @@ function getChar(row, col) {
   return char_weights_dict[max_weights[max_weights.length - 1]]
 }
 
+function getWeight(row, col) {
+  return (getRed(row,col) + getGreen(row,col) + getBlue(row,col)) / 3;
+}
+
 function getRed(row, col) {
   return ctx.getImageData(col, row, 1, 1).data[0];
 }
+
 function getGreen(row, col) {
   return ctx.getImageData(col, row, 1, 1).data[1];
 }
+
 function getBlue(row, col) {
   return ctx.getImageData(col, row, 1, 1).data[2];
 }
+
 function getAlpha(row, col) {
   return ctx.getImageData(col, row, 1, 1).data[3];
-}
-function getWeight(row, col) {
-  return (getRed(row,col) + getGreen(row,col) + getBlue(row,col)) / 3;
 }
