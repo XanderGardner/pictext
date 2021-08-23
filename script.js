@@ -112,8 +112,9 @@ function validGenerationInput() {
 }
 
 function generate_pictext() {
-  const page_element = document.getElementById('page');
-  page_element.innerHTML = `<p id=\"output\" style=\"white-space: pre; font-family: monospace; font-size: ${font_size}pt; line-height: ${line_height};\"></p>`;
+  const body_element = document.getElementById('body');
+  body_element.style.backgroundColor = "white";
+  body_element.innerHTML = `<p id=\"output\" style=\"white-space: pre; font-family: monospace; font-size: ${font_size}pt; line-height: ${line_height};\"></p>`;
   const output_element = document.getElementById('output');
   var pictext = "";
 
