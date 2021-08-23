@@ -114,10 +114,9 @@ function validGenerationInput() {
 function generate_pictext() {
   const body_element = document.getElementById('body');
   body_element.style.backgroundColor = "white";
-  body_element.innerHTML = `<p id=\"output\" style=\"white-space: pre; font-family: monospace; font-size: ${font_size}pt; line-height: ${line_height};\"></p>`;
-  const output_element = document.getElementById('output');
   var pictext = "";
 
+  // generate character by character
   var nth_col = width / char_per_line;
   var nth_row = nth_col * monospace_ratio * line_height;
   for (var row = 0.0; row < height; row += nth_row) {
@@ -130,6 +129,9 @@ function generate_pictext() {
     console.log("end of line: " + pictext_line);
     pictext += pictext_line + "\n"
   }
+
+  body_element.innerHTML = `<p id=\"output\" style=\"white-space: pre; font-family: monospace; font-size: ${font_size}pt; line-height: ${line_height};\"></p>`;
+  const output_element = document.getElementById('output');
   output_element.innerText = pictext;
 }
 
