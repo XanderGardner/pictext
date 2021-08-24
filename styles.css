@@ -123,17 +123,36 @@ label {
   width: 25px;
 }
 
-.weight-input {
+.lightness-input {
   width: 60px;
   margin: auto;
 }
 
 .pixel-canvas {
   margin-right: auto;
+  border-color: black;
+  border-style: solid;
+  border-width: 0.1rem;
+  border-radius: 0.2rem;
 }
 
 td {
   margin: auto;
+}
+
+#shortcuts {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+}
+
+#shortcuts button {
+  margin: 0.5rem;
+}
+
+#shortcuts h3 {
+  font-size: 1rem;
+  margin-top: 0.7rem;
 }
 
 /* START: output */
