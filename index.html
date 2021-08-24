@@ -53,25 +53,30 @@
           <thead>
             <tr>
               <th scope="col">Character</th>
-              <th scope="col">Max Weight (0-255)</th>
+              <th scope="col">Max lightness (0-255)</th>
               <th scope="col"></th>
             </tr>
           </thead>
           <tbody id="input-table-body">
             <tr>
               <td><input type="text" class="char-input"></td>
-              <td><input type="number" class="weight-input" value="127"></td>
+              <td><input type="number" class="lightness-input" value="127"></td>
               <td><canvas class="pixel-canvas"></canvas></td>
             </tr>
             <tr>
               <td><input type="text" class="char-input" value="0"></td>
-              <td><input type="number" class="weight-input" value="255"></td>
+              <td><input type="number" class="lightness-input" value="255"></td>
               <td><canvas class="pixel-canvas"></canvas></td>
             </tr>
           </tbody>          
         </table>
         <button id="add-char">Add Character</button>
         <button id="reset-char">Reset Characters</button>
+        <div id="shortcuts">
+          <h3>Shortcuts:</h3>
+          <button id="add-alphabet">Add Alphabet</button>
+          <button id="add-numbers">Add Numbers</button>
+        </div>
       </div>
       <br>
       <div class="step-container">
@@ -85,3 +90,294 @@
   </body>
   <script src="script.js"></script>
 </html>
+
+
+<!-- 
+  <p style="font-family: monospace; font-size: 5px;">
+  mmmmmmmmmmmmmmmmmmmmmmmmmm
+  <br>
+  mmmmmmmmmmmmmmmmmmmmmmmmmm
+  <br>
+  mmmmmmmmmmmmmmmmmmmmmmmmmm
+</p>
+<br>
+<p style="font-family: monospace; font-size: 5px;">
+  qqqqqqqqqqqqqqqqqqqqqqqqqq
+  <br>
+  qqqqqqqqqqqqqqqqqqqqqqqqqq
+  <br>
+  qqqqqqqqqqqqqqqqqqqqqqqqqq
+</p>
+<br>
+<p style="font-family: monospace; font-size: 5px;">
+  pppppppppppppppppppppppppp
+  <br>
+  pppppppppppppppppppppppppp
+  <br>
+  pppppppppppppppppppppppppp
+</p>
+<br>
+<p style="font-family: monospace; font-size: 5px;">
+  gggggggggggggggggggggggggg
+  <br>
+  gggggggggggggggggggggggggg
+  <br>
+  gggggggggggggggggggggggggg
+</p>
+<br>
+<p style="font-family: monospace; font-size: 5px;">
+  88888888888888888888888888
+  <br>
+  88888888888888888888888888
+  <br>
+  88888888888888888888888888
+</p>
+<br>
+<p style="font-family: monospace; font-size: 5px;">
+  wwwwwwwwwwwwwwwwwwwwwwwwww
+  <br>
+  wwwwwwwwwwwwwwwwwwwwwwwwww
+  <br>
+  wwwwwwwwwwwwwwwwwwwwwwwwww
+</p>
+<br>
+<p style="font-family: monospace; font-size: 5px;">
+  bbbbbbbbbbbbbbbbbbbbbbbbbb
+  <br>
+  bbbbbbbbbbbbbbbbbbbbbbbbbb
+  <br>
+  bbbbbbbbbbbbbbbbbbbbbbbbbb
+</p>
+<br>
+<p style="font-family: monospace; font-size: 5px;">
+  44444444444444444444444444
+  <br>
+  44444444444444444444444444
+  <br>
+  44444444444444444444444444
+</p>
+<br>
+<p style="font-family: monospace; font-size: 5px;">
+  dddddddddddddddddddddddddd
+  <br>
+  dddddddddddddddddddddddddd
+  <br>
+  dddddddddddddddddddddddddd
+</p>
+<br>
+<p style="font-family: monospace; font-size: 5px;">
+  kkkkkkkkkkkkkkkkkkkkkkkkkk
+  <br>
+  kkkkkkkkkkkkkkkkkkkkkkkkkk
+  <br>
+  kkkkkkkkkkkkkkkkkkkkkkkkkk
+</p>
+<br>
+<p style="font-family: monospace; font-size: 5px;">
+  66666666666666666666666666
+  <br>
+  66666666666666666666666666
+  <br>
+  66666666666666666666666666
+</p>
+<br>
+<p style="font-family: monospace; font-size: 5px;">
+  99999999999999999999999999
+  <br>
+  99999999999999999999999999
+  <br>
+  99999999999999999999999999
+</p>
+<br>
+<p style="font-family: monospace; font-size: 5px;">
+  eeeeeeeeeeeeeeeeeeeeeeeeee
+  <br>
+  eeeeeeeeeeeeeeeeeeeeeeeeee
+  <br>
+  eeeeeeeeeeeeeeeeeeeeeeeeee
+</p>
+<br>
+<p style="font-family: monospace; font-size: 5px;">
+  hhhhhhhhhhhhhhhhhhhhhhhhhh
+  <br>
+  hhhhhhhhhhhhhhhhhhhhhhhhhh
+  <br>
+  hhhhhhhhhhhhhhhhhhhhhhhhhh
+</p>
+<br>
+<p style="font-family: monospace; font-size: 5px;">
+  xxxxxxxxxxxxxxxxxxxxxxxxxx
+  <br>
+  xxxxxxxxxxxxxxxxxxxxxxxxxx
+  <br>
+  xxxxxxxxxxxxxxxxxxxxxxxxxx
+</p>
+<br>
+<p style="font-family: monospace; font-size: 5px;">
+  nnnnnnnnnnnnnnnnnnnnnnnnnn
+  <br>
+  nnnnnnnnnnnnnnnnnnnnnnnnnn
+  <br>
+  nnnnnnnnnnnnnnnnnnnnnnnnnn
+</p>
+<br>
+<p style="font-family: monospace; font-size: 5px;">
+  ssssssssssssssssssssssssss
+  <br>
+  ssssssssssssssssssssssssss
+  <br>
+  ssssssssssssssssssssssssss
+</p>
+<br>
+<p style="font-family: monospace; font-size: 5px;">
+  aaaaaaaaaaaaaaaaaaaaaaaaaa
+  <br>
+  aaaaaaaaaaaaaaaaaaaaaaaaaa
+  <br>
+  aaaaaaaaaaaaaaaaaaaaaaaaaa
+</p>
+<br>
+<p style="font-family: monospace; font-size: 5px;">
+  55555555555555555555555555
+  <br>
+  55555555555555555555555555
+  <br>
+  55555555555555555555555555
+</p>
+<br>
+<p style="font-family: monospace; font-size: 5px;">
+  33333333333333333333333333
+  <br>
+  33333333333333333333333333
+  <br>
+  33333333333333333333333333
+</p>
+<br>
+<p style="font-family: monospace; font-size: 5px;">
+  00000000000000000000000000
+  <br>
+  00000000000000000000000000
+  <br>
+  00000000000000000000000000
+</p>
+<br>
+<p style="font-family: monospace; font-size: 5px;">
+  oooooooooooooooooooooooooo
+  <br>
+  oooooooooooooooooooooooooo
+  <br>
+  oooooooooooooooooooooooooo
+</p>
+<br>
+<p style="font-family: monospace; font-size: 5px;">
+  yyyyyyyyyyyyyyyyyyyyyyyyyy
+  <br>
+  yyyyyyyyyyyyyyyyyyyyyyyyyy
+  <br>
+  yyyyyyyyyyyyyyyyyyyyyyyyyy
+</p>
+<br>
+<p style="font-family: monospace; font-size: 5px;">
+  22222222222222222222222222
+  <br>
+  22222222222222222222222222
+  <br>
+  22222222222222222222222222
+</p>
+<br>
+<p style="font-family: monospace; font-size: 5px;">
+  ffffffffffffffffffffffffff
+  <br>
+  ffffffffffffffffffffffffff
+  <br>
+  ffffffffffffffffffffffffff
+</p>
+<br>
+<p style="font-family: monospace; font-size: 5px;">
+  zzzzzzzzzzzzzzzzzzzzzzzzzz
+  <br>
+  zzzzzzzzzzzzzzzzzzzzzzzzzz
+  <br>
+  zzzzzzzzzzzzzzzzzzzzzzzzzz
+</p>
+<br>
+<p style="font-family: monospace; font-size: 5px;">
+  vvvvvvvvvvvvvvvvvvvvvvvvvv
+  <br>
+  vvvvvvvvvvvvvvvvvvvvvvvvvv
+  <br>
+  vvvvvvvvvvvvvvvvvvvvvvvvvv
+</p>
+<br>
+<p style="font-family: monospace; font-size: 5px;">
+  cccccccccccccccccccccccccc
+  <br>
+  cccccccccccccccccccccccccc
+  <br>
+  cccccccccccccccccccccccccc
+</p>
+<br>
+<p style="font-family: monospace; font-size: 5px;">
+  uuuuuuuuuuuuuuuuuuuuuuuuuu
+  <br>
+  uuuuuuuuuuuuuuuuuuuuuuuuuu
+  <br>
+  uuuuuuuuuuuuuuuuuuuuuuuuuu
+</p>
+<br>
+<p style="font-family: monospace; font-size: 5px;">
+  tttttttttttttttttttttttttt
+  <br>
+  tttttttttttttttttttttttttt
+  <br>
+  tttttttttttttttttttttttttt
+</p>
+<br>
+<p style="font-family: monospace; font-size: 5px;">
+  jjjjjjjjjjjjjjjjjjjjjjjjjj
+  <br>
+  jjjjjjjjjjjjjjjjjjjjjjjjjj
+  <br>
+  jjjjjjjjjjjjjjjjjjjjjjjjjj
+</p>
+<br>
+<p style="font-family: monospace; font-size: 5px;">
+  rrrrrrrrrrrrrrrrrrrrrrrrrr
+  <br>
+  rrrrrrrrrrrrrrrrrrrrrrrrrr
+  <br>
+  rrrrrrrrrrrrrrrrrrrrrrrrrr
+</p>
+<br>
+<p style="font-family: monospace; font-size: 5px;">
+  77777777777777777777777777
+  <br>
+  77777777777777777777777777
+  <br>
+  77777777777777777777777777
+</p>
+<br>
+<p style="font-family: monospace; font-size: 5px;">
+  11111111111111111111111111
+  <br>
+  11111111111111111111111111
+  <br>
+  11111111111111111111111111
+</p>
+<br>
+<p style="font-family: monospace; font-size: 5px;">
+  llllllllllllllllllllllllll
+  <br>
+  llllllllllllllllllllllllll
+  <br>
+  llllllllllllllllllllllllll
+</p>
+<br>
+<p style="font-family: monospace; font-size: 5px;">
+  iiiiiiiiiiiiiiiiiiiiiiiiii
+  <br>
+  iiiiiiiiiiiiiiiiiiiiiiiiii
+  <br>
+  iiiiiiiiiiiiiiiiiiiiiiiiii
+</p>
+<br> -->
