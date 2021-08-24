@@ -130,6 +130,10 @@ label {
 
 .pixel-canvas {
   margin-right: auto;
+  border-color: black;
+  border-style: solid;
+  border-width: 0.1rem;
+  border-radius: 0.2rem;
 }
 
 td {

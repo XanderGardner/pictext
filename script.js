@@ -26,6 +26,8 @@ const add_numbers_button = document.getElementById('add-numbers');
 // generation elements
 const generate_button = document.getElementById('generate');
 
+updatePixelCanvas();
+
 // step 1
 file_input_element.addEventListener('change', (e) => {
   const file = e.target.files[0];
@@ -37,23 +39,33 @@ add_char_button.addEventListener('click', (e) => {
   var char_row_element = document.createElement("tr");
   char_row_element.innerHTML = "<td><input type=\"text\" class=\"char-input\"></td><td><input type=\"number\" class=\"lightness-input\"></td><td><canvas class=\"pixel-canvas\"></canvas></td>";
   table_body_element.appendChild(char_row_element);
+  char_row_element.addEventListener('change', (event) => {
+    updatePixelCanvas();
+  });
 });
 reset_char_button.addEventListener('click', (e) => {
   table_body_element.innerHTML = base_table_html;
+  updatePixelCanvas();
 });
 add_alphabet_button.addEventListener('click', (e) => {
   var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
-  var char_num = 0;
-  var lightness_difference = 8;
+  var lightness_difference = 5;
   for (var i = 0; i < chars_ordered.length; i++) {
     if (alphabet.includes(chars_ordered[i])) {
-      table_body_element.appendChild(getCharRow(chars_ordered[i], 10 + char_num * lightness_difference));
-      char_num++;
+      table_body_element.appendChild(getCharRow(chars_ordered[i], 10 + i * lightness_difference));
     }
   }
+  updatePixelCanvas();
 });
 add_numbers_button.addEventListener('click', (e) => {
-
+  var numbers = ["0","1","2","3","4","5","6","7","8","9"];
+  var lightness_difference = 5;
+  for (var i = 0; i < chars_ordered.length; i++) {
+    if (numbers.includes(chars_ordered[i])) {
+      table_body_element.appendChild(getCharRow(chars_ordered[i], 10 + i * lightness_difference));
+    }
+  }
+  updatePixelCanvas();
 });
 
 // generation process
@@ -101,6 +113,16 @@ function readInput() {
     char_lightnesss_dict[max_lightnesss[i]] = curr_char;
   }
   max_lightnesss.sort(function(a, b){return a-b});
+}
+
+// update pixel-canvas
+function updatePixelCanvas() {
+  lightness_input_elements = document.getElementsByClassName('lightness-input'); // parallel arrays
+  pixel_canvas_elements = document.getElementsByClassName('pixel-canvas');
+  for (var i = 0; i < pixel_canvas_elements.length; i++) {
+    var pixel_weight = lightness_input_elements[i].value;
+    pixel_canvas_elements[i].style.backgroundColor = `rgb(${pixel_weight},${pixel_weight},${pixel_weight})`;
+  }
 }
 
 // shortcut helpers
